@@ -34,9 +34,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker@1.0.9/dist/datepicker.min.css">
 
     <!-- Sparnatural CSS -->
-    <link href="sparnatural.css" rel="stylesheet" />
+    <link href="./sparnatural.css" rel="stylesheet" />
     <!-- Timeline CSS -->
     <link rel="stylesheet" href="assets/css/timeline.css" />
+
+    <link href="sparnatural-history.css" rel="stylesheet" />
 
     <style>
       .yasqe .CodeMirror {
@@ -49,17 +51,11 @@
         overflow: visible;
       }
 
-      #sparnatural-container {
-
-      }
 
       #yasqe {
         display: none;
       }
 
-      #yasr-section {
-        
-      }
 
       #contact {
         margin-top:40px;
@@ -68,6 +64,77 @@
       }
 
     </style>
+
+   <style>
+  .new-query-container-mistral {
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+}
+
+.voice-textarea-wrapper textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.btn-send button {
+  padding: 10px 16px;
+  background-color: rgb(2, 184, 117);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.btn-send button:hover {
+  background-color: rgb(2, 184, 117, 0.8);
+}
+
+#btnVoice {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+
+#btnVoice:hover {
+  background-color: #e0e0e0;
+}
+
+#btnVoice.recording i {
+  animation: pulse 1s infinite;
+  color: rgb(72, 206, 152);
+}
+
+#btnVoice.loading i {
+  animation: spin 1s linear infinite;
+  color: #007bff;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+</style>
+
+
 
   <!-- /Sparnatural-specific -->
 
@@ -113,11 +180,35 @@
           <a href="#" id="tutorial"><i id="tutorial-toggle-icon" class="fad fa-question fa-fw"></i>&nbsp; <span data-i18n="tutorial"></a>
         </div>
 
+        <div class="new-query-container-mistral">
+          <div class="voice-textarea-wrapper">
+              <textarea
+                id="naturalRequest"
+                rows="1"
+                data-i18n-placeholder="Exemple"
+                placeholder="Ex : Donne-moi toutes les œuvres exposées en France"
+              ></textarea>
+            </div>
+            <div class="btn-send" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+              <button id="btnVoice" onclick="startVoiceToQuery()" aria-label="Micro">
+                <i id="micIcon" class="fas fa-microphone"></i>
+              </button>
+              <button id="btnSend" onclick="sendNaturalRequest()" data-i18n="send"></button>
+          </div>
+        </div>
+
+        <!-- separateur entre les deux solution avec text OR ou OU en fr-->
+
+        <div class="row" style="margin-top: 1em; margin-bottom: 1em;">
+          <div class="col-md-12 text-center">
+            <span style="font-style: italic; font-size:1.5em;" data-i18n="OR"></span>
+          </div>
+        </div>
         <!-- This is where Sparnatural is inserted -->
         <div class="row">
 
           <spar-natural 
-            src="sparnatural-config.ttl"
+            src="./sparnatural-config.ttl"
             endpoint="https://dbpedia.org/sparql"
             lang="en"
             defaultLang="en"
@@ -128,11 +219,11 @@
 
           <input type="hidden" id="query-json"></input>
         </div>
-
+       
         <!-- -->
         <div class="row">
-
-          <div class="col-md-8">
+          
+          <div class="col-md-6">
             <span style="font-style: italic; font-size:0.9em;">
               <a href="#" id="sparql-toggle"><i id="sparql-toggle-icon" class="fad fa-eye fa-fw"></i>&nbsp; <span data-i18n="actions.toggle"></span></a>
               &nbsp;|&nbsp;
@@ -143,7 +234,6 @@
               <a href="#" id="import"><i id="import-icon" class="fad fa-file-import"></i>&nbsp; <span data-i18n="actions.import"></span></a>
             </span>
           </div>
-
           <div class="col-md-4">
             <form>
               <div class="form-group">
@@ -155,6 +245,12 @@
                 </select>
               </div>
             </form>
+          </div>
+          <div class="col-md-2">
+            <sparnatural-history lang="fr">
+              <services href="https://services.sparnatural.eu/dbpedia-en/" />
+            </sparnatural-history>
+            <button id="myCustomButton" class="btn btn-primary" style="width:100%;"><i class="fad fa-history"></i>&nbsp; <span data-i18n="history"></span></button>
           </div>
         </div>
 
@@ -314,6 +410,7 @@
   <script src="tutorial.js"></script>
 
   <script src="sparnatural-bindings.js"></script>
+  <script type="text/javascript" src="./sparnatural-history.js"></script>
 
     <script>
       $.urlParam = function(name){
@@ -325,6 +422,7 @@
 
       // set the locale
       $.i18n( { locale: lang } );  
+
       $.i18n().load( {
           'en': {
             'page.title': 'Sparnatural Museums',
@@ -347,7 +445,12 @@
             'example.placeholder': 'Load example query...',
             'example.1.title': 'Artworks displayed in Italian museums',
             'example.2.title': 'Museums where Van Goghs artworks are displayed',
-            'example.3.title': '19th Century French women artists, movements, artworks & museums'
+            'example.3.title': '19th Century French women artists, movements, artworks & museums',
+            'Results': 'Results',
+            'send': 'Send',
+            'Exemple': 'Ex: Give me all artworks displayed in France',
+            'history': 'History',
+            'OR': '- OR -'
           },
           'fr': {
             'page.title': 'Sparnatural : Musées',
@@ -370,22 +473,38 @@
             'example.placeholder': 'Charger une requête d\'exemple...',
             'example.1.title': 'Les œuvres exposées dans des musées italiens',
             'example.2.title': 'Les musées qui exposent les oeuvres de Vincent Van Gogh',
-            'example.3.title': 'Les artistes françaises du XIXe, mouvements, œuvres & lieux d exposition'
+            'example.3.title': 'Les artistes françaises du XIXe, mouvements, œuvres & lieux d exposition',
+            'Results': 'Résultats',
+            'send': 'Envoyer',
+            'Exemple': 'Ex : Donne-moi toutes les œuvres exposées en France',
+            'history': 'Historique',
+            'OR': '- OU -'
           }
       } );  
       $('body').i18n();
 
+      // Appliquer les traductions aux attributs (comme placeholder)
+      $("[data-i18n-placeholder]").each(function () {
+        const key = $(this).data("i18n-placeholder");
+        const translated = $.i18n(key);
+        $(this).attr("placeholder", translated);
+      });
+      
       const sparnatural = document.querySelector("spar-natural");
+      const historyComponent = document.querySelector("sparnatural-history");
 
       if(lang == "fr") { 
+        console.log(true);
         sparnatural.setAttribute("lang", "fr");
+        historyComponent.setAttribute("lang", "fr");
       }
+      
       
       // prints the endpoint
       $('#endpoint').attr("href", sparnatural.getAttribute("endpoint"));
       $('#endpoint').html(sparnatural.getAttribute("endpoint"));
 
-
+      let lastquery = null;
       // load ?query= param if present
       var UrlString = window.location.search;
       var urlParams = new URLSearchParams(UrlString);
@@ -434,6 +553,40 @@
         yasr.plugins["Grid"].config.lang = "en";
         yasr.plugins["Stats"].config.lang = "en";
       }
+
+      sparnatural.addEventListener("init", (event) => {
+        // notify the specification to yasr plugins
+        for (const plugin in yasr.plugins) {
+          if (yasr.plugins[plugin].notifyConfiguration) {
+            yasr.plugins[plugin].notifyConfiguration(
+              sparnatural.sparnatural.specProvider
+            );
+          }
+        }
+         historyComponent.notifyConfiguration(sparnatural.sparnatural.specProvider);
+      });
+      
+      document.getElementById("myCustomButton").addEventListener("click", () => {
+        historyComponent.openHistoryModal();
+      });
+
+
+      sparnatural.addEventListener("queryUpdated", (event) => {
+        // get the SPARQL query string, and pass it to yasQE
+        queryString = sparnatural.expandSparql(event.detail.queryString);
+        lastquery = event.detail.queryJson;
+        yasqe.setValue(queryString);
+        
+        // save query
+        document.getElementById('query-json').value = JSON.stringify(event.detail.queryJson);
+
+        // notify the query to yasr plugins
+        for (const plugin in yasr.plugins) {
+          if (yasr.plugins[plugin].notifyQuery) {
+            yasr.plugins[plugin].notifyQuery(event.detail.queryJson);
+          }
+        }
+      });
 
       // binds Sparnatural with the YasR plugins
       bindSparnaturalWithYasrPlugins(sparnatural, yasr);
@@ -496,8 +649,132 @@
         initTour();
       }
 
+      sparnatural.addEventListener("submit", (event) => {
+        // enable loader on button
+        sparnatural.disablePlayBtn() ;
+        historyComponent.saveQuery(lastquery);
+        // trigger the query from YasQE
+        yasqe.query();
+      });
+
+      historyComponent.addEventListener("loadQuery", (event) => {
+        const query = event.detail.query;
+        sparnatural.loadQuery(query);
+      });
+
     </script>
   </script>
+  <script>
+        async function sendNaturalRequest() {
+        const prompt = document.getElementById("naturalRequest").value.trim();
+        const sendButton = document.getElementById("btnSend");;
+
+        if (!prompt) {
+          alert("❌ Veuillez entrer une requête naturelle.");
+          return;
+        }
+
+        // Sauvegarder le texte initial et mettre le loading spinner
+        const originalText = sendButton.innerHTML;
+        sendButton.disabled = true;
+        sendButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
+
+        const url = `https://services.sparnatural.eu/dbpedia-en/api/v1/text2query?text=${encodeURIComponent(prompt)}`;
+        console.log("URL de la requête :", url);
+
+        try {
+          const res = await fetch(url);
+          if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
+          const json = await res.json();
+
+          const sparnaturalEl = document.querySelector("spar-natural");
+          if (sparnaturalEl && typeof sparnaturalEl.loadQuery === "function") {
+            sparnaturalEl.loadQuery(json);
+          }
+        } catch (err) {
+          console.error("Erreur lors de l'envoi de la requête :", err);
+          alert("❌ Erreur lors de l'envoi de la requête : " + err.message);
+        } finally {
+          sendButton.innerHTML = originalText || "Envoyer";
+          sendButton.disabled = false;
+        }
+      }
+
+      let recognition = null;
+      let isRecording = false;
+
+      function startVoiceToQuery() {
+        const btn = document.getElementById("btnVoice");
+        const icon = document.getElementById("micIcon");
+        const textarea = document.getElementById("naturalRequest");
+
+        if (
+          !(
+            "webkitSpeechRecognition" in window || "SpeechRecognition" in window
+          )
+        ) {
+          alert(
+            "🚫 La reconnaissance vocale n'est pas supportée sur ce navigateur."
+          );
+          return;
+        }
+
+        if (isRecording) {
+          recognition.stop();
+          return;
+        }
+
+        const SpeechRecognition =
+          window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        if (lang === "fr") {
+          recognition.lang = "fr-FR";
+        } else {
+          recognition.lang = "en-US";
+        }
+        console.log("Langue de reconnaissance :", recognition.lang);
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        isRecording = true;
+        btn.classList.add("recording");
+        icon.className = "fas fa-microphone";
+
+        recognition.start();
+
+        recognition.onresult = async (event) => {
+          const transcript = event.results[0][0].transcript;
+          textarea.value = transcript;
+
+
+          btn.classList.remove("recording");
+          btn.classList.add("loading");
+
+          try {
+            await sendNaturalRequest();
+          } catch (e) {
+            alert("Erreur lors de l'envoi de la requête : " + e.message);
+          } finally {
+            resetVoiceButtonUI();
+          }
+        };
+
+        recognition.onerror = (event) => {
+          alert("Erreur de reconnaissance vocale : " + event.error);
+          resetVoiceButtonUI();
+        };
+
+        recognition.onend = () => {
+          if (isRecording) resetVoiceButtonUI();
+        };
+
+        function resetVoiceButtonUI() {
+          isRecording = false;
+          btn.classList.remove("recording", "loading");
+          icon.className = "fas fa-microphone";
+        }
+      }
+    </script>
 
 
 </body>
