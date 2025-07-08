@@ -247,7 +247,7 @@
             </form>
           </div>
           <div class="col-md-2">
-            <sparnatural-history lang="fr">
+            <sparnatural-history lang="en">
               <services href="https://services.sparnatural.eu/dbpedia-en/" />
             </sparnatural-history>
             <button id="myCustomButton" class="btn btn-primary" style="width:100%;"><i class="fad fa-history"></i>&nbsp; <span data-i18n="history"></span></button>
@@ -492,6 +492,7 @@
       
       const sparnatural = document.querySelector("spar-natural");
       const historyComponent = document.querySelector("sparnatural-history");
+      const services = sparnatural.querySelector("services");
 
       if(lang == "fr") { 
         console.log(true);
@@ -568,7 +569,7 @@
       
       document.getElementById("myCustomButton").addEventListener("click", () => {
         historyComponent.openHistoryModal();
-      });
+            });
 
 
       sparnatural.addEventListener("queryUpdated", (event) => {
