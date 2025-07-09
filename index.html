@@ -184,7 +184,7 @@
           <div class="voice-textarea-wrapper">
               <textarea
                 id="naturalRequest"
-                rows="1"
+                rows="2"
                 data-i18n-placeholder="Exemple"
                 placeholder="Ex : Donne-moi toutes les œuvres exposées en France"
               ></textarea>
@@ -248,7 +248,8 @@
           </div>
           <div class="col-md-2">
             <sparnatural-history lang="en">
-              <services href="https://services.sparnatural.eu/dbpedia-en/" />
+              <sparnatural-services href="https://services.sparnatural.eu/dbpedia-en/">
+              </sparnatural-services>
             </sparnatural-history>
             <button id="myCustomButton" class="btn btn-primary" style="width:100%;"><i class="fad fa-history"></i>&nbsp; <span data-i18n="history"></span></button>
           </div>
@@ -411,6 +412,7 @@
 
   <script src="sparnatural-bindings.js"></script>
   <script type="text/javascript" src="./sparnatural-history.js"></script>
+  <script type="text/javascript" src="./sparnatural-services.js"></script>
 
     <script>
       $.urlParam = function(name){
@@ -494,11 +496,17 @@
       const historyComponent = document.querySelector("sparnatural-history");
       const services = sparnatural.querySelector("services");
 
-      if(lang == "fr") { 
+      if (lang == "fr") {
         console.log(true);
         sparnatural.setAttribute("lang", "fr");
         historyComponent.setAttribute("lang", "fr");
+
+        // 🛠 FORCER le re-render du composant avec display()
+        if (typeof historyComponent.display === "function") {
+          historyComponent.display();
+        }
       }
+
       
       
       // prints the endpoint
@@ -715,7 +723,7 @@
           )
         ) {
           alert(
-            "🚫 La reconnaissance vocale n'est pas supportée sur ce navigateur."
+            "La reconnaissance vocale n’est pas prise en charge par ce navigateur. Veuillez essayer avec Chrome, Opera ou Edge."
           );
           return;
         }
