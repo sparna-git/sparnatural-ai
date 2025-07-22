@@ -129,7 +129,7 @@
               <li>
                 <a class="nav-link" href="./doc-page.html"
                   ><i style="font-size: 25px" class="fa-thin fa-book"></i
-                  >&nbsp;Docs</a
+                  >&nbsp;<span data-i18n="menu.docs">Docs</span></a
                 >
               </li>
             </ul>
@@ -535,6 +535,7 @@
           "menu.home": "Sparnatural",
           "menu.lang": "Lang.",
           "menu.github": "Github",
+          "menu.docs": "Docs",
           "endpoint.querying": "Querying",
           "actions.toggle": "Toggle SPARQL editor",
           "actions.share": "Share",
@@ -565,6 +566,7 @@
           "menu.home": "Sparnatural",
           "menu.lang": "Lang.",
           "menu.github": "Github",
+          "menu.docs": "Docs",
           "endpoint.querying": "Service SPARQL:",
           "actions.toggle": "Afficher/Masquer éditeur SPARQL",
           "actions.share": "Partager",
@@ -594,6 +596,21 @@
         },
       });
       $("body").i18n();
+
+      // Update navigation links to preserve language parameter
+      function updateNavigationLinks() {
+        const currentLang = lang;
+        const langParam = currentLang !== "en" ? "?lang=" + currentLang : "";
+
+        // Update Docs link
+        const docsLink = document.querySelector('a[href="./doc-page.html"]');
+        if (docsLink) {
+          docsLink.href = "./doc-page.html" + langParam;
+        }
+      }
+
+      // Call the function to update links
+      updateNavigationLinks();
 
       // Appliquer les traductions aux attributs (comme placeholder)
       $("[data-i18n-placeholder]").each(function () {

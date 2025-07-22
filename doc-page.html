@@ -738,6 +738,27 @@
         },
       });
       $("body").i18n();
+
+      // Update navigation links to preserve language parameter
+      function updateNavigationLinks() {
+        const currentLang = lang;
+        const langParam = currentLang !== "en" ? "?lang=" + currentLang : "";
+
+        // Update ALL links to index.html (logo and Home link)
+        const allIndexLinks = document.querySelectorAll('a[href="index.html"]');
+        allIndexLinks.forEach((link) => {
+          link.href = "index.html" + langParam;
+        });
+
+        // Update Docs link
+        const docsLink = document.querySelector('a[href="./doc-page.html"]');
+        if (docsLink) {
+          docsLink.href = "./doc-page.html" + langParam;
+        }
+      }
+
+      // Call the function to update links
+      updateNavigationLinks();
     </script>
   </body>
 </html>
