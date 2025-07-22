@@ -88,6 +88,12 @@
         text-align: center;
         margin: 20px 0;
       }
+      .limit-section {
+        margin-left: 40px;
+      }
+      .agent-section {
+        margin-left: 40px;
+      }
     </style>
   </head>
   <body>
@@ -243,48 +249,58 @@
 
           <h3 data-i18n="doc.arch.agents.title"></h3>
           <p data-i18n="doc.arch.agents.intro"></p>
-          <h4 data-i18n="doc.arch.agents.text2query.title"></h4>
-          <ul>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.text2query.config.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.text2query.config.desc"></span>
-            </li>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.text2query.function.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.text2query.function.desc"></span>
-            </li>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.text2query.workflow.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.text2query.workflow.desc"></span>
-            </li>
-          </ul>
-          <h4 data-i18n="doc.arch.agents.query2text.title"></h4>
-          <ul>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.query2text.config.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.query2text.config.desc"></span>
-            </li>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.query2text.function.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.query2text.function.desc"></span>
-            </li>
-            <li>
-              <strong
-                data-i18n="doc.arch.agents.query2text.purpose.title"
-              ></strong>
-              <span data-i18n="doc.arch.agents.query2text.purpose.desc"></span>
-            </li>
-          </ul>
+          <div class="agent-section">
+            <h4 data-i18n="doc.arch.agents.text2query.title"></h4>
+            <ul>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.text2query.config.title"
+                ></strong>
+                <span data-i18n="doc.arch.agents.text2query.config.desc"></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.text2query.function.title"
+                ></strong>
+                <span
+                  data-i18n="doc.arch.agents.text2query.function.desc"
+                ></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.text2query.workflow.title"
+                ></strong>
+                <span
+                  data-i18n="doc.arch.agents.text2query.workflow.desc"
+                ></span>
+              </li>
+            </ul>
+            <h4 data-i18n="doc.arch.agents.query2text.title"></h4>
+            <ul>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.query2text.config.title"
+                ></strong>
+                <span data-i18n="doc.arch.agents.query2text.config.desc"></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.query2text.function.title"
+                ></strong>
+                <span
+                  data-i18n="doc.arch.agents.query2text.function.desc"
+                ></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.arch.agents.query2text.purpose.title"
+                ></strong>
+                <span
+                  data-i18n="doc.arch.agents.query2text.purpose.desc"
+                ></span>
+              </li>
+            </ul>
+          </div>
 
           <h3 data-i18n="doc.arch.ui.title"></h3>
           <ul>
@@ -315,39 +331,45 @@
           </ul>
 
           <h2 data-i18n="doc.limits.title"></h2>
-          <h3 data-i18n="doc.limits.current.title"></h3>
-          <ul>
-            <li>
-              <strong data-i18n="doc.limits.current.reliability.title"></strong>
-              <span data-i18n="doc.limits.current.reliability.desc"></span>
-            </li>
-            <li>
-              <strong data-i18n="doc.limits.current.robustness.title"></strong>
-              <span data-i18n="doc.limits.current.robustness.desc"></span>
-            </li>
-          </ul>
+          <div class="limit-section">
+            <h3 data-i18n="doc.limits.current.title"></h3>
+            <ul>
+              <li>
+                <strong
+                  data-i18n="doc.limits.current.reliability.title"
+                ></strong>
+                <span data-i18n="doc.limits.current.reliability.desc"></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.limits.current.robustness.title"
+                ></strong>
+                <span data-i18n="doc.limits.current.robustness.desc"></span>
+              </li>
+            </ul>
 
-          <h3 data-i18n="doc.limits.future.title"></h3>
-          <ul>
-            <li>
-              <strong data-i18n="doc.limits.future.enhanced.title"></strong>
-              <span data-i18n="doc.limits.future.enhanced.desc"></span>
-            </li>
-            <li>
-              <strong data-i18n="doc.limits.future.robust.title"></strong>
-              <span data-i18n="doc.limits.future.robust.desc"></span>
-            </li>
-            <li>
-              <strong data-i18n="doc.limits.future.security.title"></strong>
-              <span data-i18n="doc.limits.future.security.desc"></span>
-            </li>
-            <li>
-              <strong
-                data-i18n="doc.limits.future.collaboration.title"
-              ></strong>
-              <span data-i18n="doc.limits.future.collaboration.desc"></span>
-            </li>
-          </ul>
+            <h3 data-i18n="doc.limits.future.title"></h3>
+            <ul>
+              <li>
+                <strong data-i18n="doc.limits.future.enhanced.title"></strong>
+                <span data-i18n="doc.limits.future.enhanced.desc"></span>
+              </li>
+              <li>
+                <strong data-i18n="doc.limits.future.robust.title"></strong>
+                <span data-i18n="doc.limits.future.robust.desc"></span>
+              </li>
+              <li>
+                <strong data-i18n="doc.limits.future.security.title"></strong>
+                <span data-i18n="doc.limits.future.security.desc"></span>
+              </li>
+              <li>
+                <strong
+                  data-i18n="doc.limits.future.collaboration.title"
+                ></strong>
+                <span data-i18n="doc.limits.future.collaboration.desc"></span>
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <!-- End Documentation Section -->
