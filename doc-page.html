@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Sparnatural Museums & Painters</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <!-- Sparnatural-specific -->
+
+    <!-- Vis.js for timeline -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"
+    />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/fa6/css/all.min.css" />
+
+    <!-- YASGUI CSS -->
+    <link
+      href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- datepicker -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker@1.0.9/dist/datepicker.min.css"
+    />
+
+    <!-- Sparnatural CSS -->
+    <link href="./sparnatural.css" rel="stylesheet" />
+    <!-- Timeline CSS -->
+    <link rel="stylesheet" href="assets/css/timeline.css" />
+
+    <link href="sparnatural-history.css" rel="stylesheet" />
+
+    <link href="sparnatural-text-query.css" rel="stylesheet" />
+
+    <style>
+      .yasqe .CodeMirror {
+        font-size: 0.8em;
+      }
+
+      #sparnatural-section {
+        padding-top: 110px;
+        height: auto;
+        overflow: visible;
+      }
+
+      #yasqe {
+        display: none;
+      }
+
+      #contact {
+        margin-top: 40px;
+        padding: 0px;
+        padding-top: 20px;
+      }
+      #documentation {
+        margin-top: 140px;
+        margin-bottom: 70px;
+      }
+      .image-container-doc {
+        text-align: center;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- ======= Header ======= -->
+      <header id="header" class="fixed-top d-flex align-items-center">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <div id="logo">
+            <h1><a href="index.html" data-i18n="page.title"></a></h1>
+          </div>
+
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li>
+                <a class="nav-link" href="index.html"
+                  ><i style="font-size: 25px" class="fa-thin fa-house"></i
+                  >&nbsp;Home</a
+                >
+              </li>
+              <li class="dropdown">
+                <a href="#"
+                  ><i
+                    style="font-size: 25px"
+                    class="fa-thin fa-globe-africa"
+                  ></i
+                  >&nbsp;<span>Lang.</span> <i class="bi bi-chevron-down"></i
+                ></a>
+                <ul style="width: 80%">
+                  <li><a href="?lang=fr">fr</a></li>
+                  <li><a href="?lang=en">en</a></li>
+                </ul>
+              </li>
+              <li>
+                <a
+                  class="nav-link"
+                  href="https://github.com/sparna-git/Sparnatural"
+                  ><i style="font-size: 25px" class="fab fa-github"></i>&nbsp;
+                  Github</a
+                >
+              </li>
+              <!--for doc page readme file -->
+              <li>
+                <a class="nav-link" href="./doc-page.html"
+                  ><i style="font-size: 25px" class="fa-thin fa-book"></i
+                  >&nbsp;<span data-i18n="menu.docs">Docs</span></a
+                >
+              </li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+          <!-- .navbar -->
+        </div>
+      </header>
+      <!-- End Header -->
+      <!-- ======= Documentation Section ======= -->
+      <section id="documentation">
+        <div class="container">
+          <h1 data-i18n="doc.title"></h1>
+          <p data-i18n="doc.intro"></p>
+
+          <h2 data-i18n="doc.features.title"></h2>
+          <ul>
+            <li>
+              <strong data-i18n="doc.features.ai.title"></strong>
+              <span data-i18n="doc.features.ai.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.features.human.title"></strong>
+              <span data-i18n="doc.features.human.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.features.multimodal.title"></strong>
+              <span data-i18n="doc.features.multimodal.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.features.history.title"></strong>
+              <span data-i18n="doc.features.history.desc"></span>
+            </li>
+          </ul>
+
+          <h2 data-i18n="doc.arch.diagram.title"></h2>
+          <div class="image-container-doc">
+            <img
+              src="./assets/img/Diagramme-en.drawio.svg"
+              alt="Sparnatural Architecture Diagram"
+              class="img-fluid"
+            />
+          </div>
+
+          <h2 data-i18n="doc.arch.components.title"></h2>
+
+          <h3 data-i18n="doc.arch.input.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.arch.input.natural.title"></strong>
+              <span data-i18n="doc.arch.input.natural.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.input.voice.title"></strong>
+              <span data-i18n="doc.arch.input.voice.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.input.examples.title"></strong>
+              <span data-i18n="doc.arch.input.examples.desc"></span>
+            </li>
+          </ul>
+
+          <h3 data-i18n="doc.arch.services.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.arch.services.hosting.title"></strong>
+              <span data-i18n="doc.arch.services.hosting.desc"></span>
+              <code></code>.
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.services.api.title"></strong>
+              <span data-i18n="doc.arch.services.api.desc"></span>
+              <ul>
+                <li>
+                  <code></code>:
+                  <span data-i18n="doc.arch.services.api.query2text"></span>
+                </li>
+                <li>
+                  <code></code>:
+                  <span data-i18n="doc.arch.services.api.text2query"></span>
+                </li>
+                <li>
+                  <code></code>:
+                  <span data-i18n="doc.arch.services.api.urilookup"></span>
+                </li>
+                <li>
+                  <code></code>:
+                  <span data-i18n="doc.arch.services.api.sparql"
+                    >(e.g., dbpedia-demo uses</span
+                  >
+                  <code
+                    >https://services.sparnatural.eu/api/v1/dbpedia-en/sparql?endpoint=http%3A%2F%2Fdbpedia.org%2Fsparql</code
+                  >).
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.services.response.title"></strong>
+              <span data-i18n="doc.arch.services.response.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.services.security.title"></strong>
+              <span data-i18n="doc.arch.services.security.desc"></span>
+            </li>
+          </ul>
+
+          <h3 data-i18n="doc.arch.agents.title"></h3>
+          <p data-i18n="doc.arch.agents.intro"></p>
+          <h4 data-i18n="doc.arch.agents.text2query.title"></h4>
+          <ul>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.text2query.config.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.text2query.config.desc"></span>
+            </li>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.text2query.function.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.text2query.function.desc"></span>
+            </li>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.text2query.workflow.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.text2query.workflow.desc"></span>
+            </li>
+          </ul>
+          <h4 data-i18n="doc.arch.agents.query2text.title"></h4>
+          <ul>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.query2text.config.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.query2text.config.desc"></span>
+            </li>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.query2text.function.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.query2text.function.desc"></span>
+            </li>
+            <li>
+              <strong
+                data-i18n="doc.arch.agents.query2text.purpose.title"
+              ></strong>
+              <span data-i18n="doc.arch.agents.query2text.purpose.desc"></span>
+            </li>
+          </ul>
+
+          <h3 data-i18n="doc.arch.ui.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.arch.ui.visual.title"></strong>
+              <span data-i18n="doc.arch.ui.visual.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.ui.shacl.title"></strong>
+              <span data-i18n="doc.arch.ui.shacl.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.ui.execution.title"></strong>
+              <span data-i18n="doc.arch.ui.execution.desc"></span>
+            </li>
+          </ul>
+
+          <h3 data-i18n="doc.arch.history.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.arch.history.queries.title"></strong>
+              <span data-i18n="doc.arch.history.queries.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.arch.history.summarization.title"></strong>
+              <span data-i18n="doc.arch.history.summarization.desc"></span>
+            </li>
+          </ul>
+
+          <h2 data-i18n="doc.limits.title"></h2>
+          <h3 data-i18n="doc.limits.current.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.limits.current.reliability.title"></strong>
+              <span data-i18n="doc.limits.current.reliability.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.limits.current.robustness.title"></strong>
+              <span data-i18n="doc.limits.current.robustness.desc"></span>
+            </li>
+          </ul>
+
+          <h3 data-i18n="doc.limits.future.title"></h3>
+          <ul>
+            <li>
+              <strong data-i18n="doc.limits.future.enhanced.title"></strong>
+              <span data-i18n="doc.limits.future.enhanced.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.limits.future.robust.title"></strong>
+              <span data-i18n="doc.limits.future.robust.desc"></span>
+            </li>
+            <li>
+              <strong data-i18n="doc.limits.future.security.title"></strong>
+              <span data-i18n="doc.limits.future.security.desc"></span>
+            </li>
+            <li>
+              <strong
+                data-i18n="doc.limits.future.collaboration.title"
+              ></strong>
+              <span data-i18n="doc.limits.future.collaboration.desc"></span>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- End Documentation Section -->
+    </main>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/demo.js"></script>
+    <script src="sampleQueries.js"></script>
+
+    <!-- Sparnatural-specific -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- datepicker -->
+    <script src="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker@1.0.9/dist/datepicker.min.js"></script>
+
+    <!-- YASGUI stuff -->
+    <script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
+
+    <!-- vis.js for the timeline -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <!--  defines timeline plugin -->
+    <script src="assets/js/timeline.js"></script>
+    <script src="assets/js/myTable.js"></script>
+
+    <!-- Sparnatural Javascript -->
+    <script type="text/javascript" src="./sparnatural.js"></script>
+    <script
+      type="text/javascript"
+      src="./sparnatural-yasgui-plugins.js"
+    ></script>
+
+    <!-- /Sparnatural-specific -->
+
+    <!-- i18n -->
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.js"></script>
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.messagestore.js"></script>
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.fallbacks.js"></script>
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.language.js"></script>
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.parser.js"></script>
+    <script src="assets/vendor/jquery.i18n/jquery.i18n.emitter.js"></script>
+
+    <!-- Json url (Compression) -->
+    <script src="https://cdn.jsdelivr.net/gh/masotime/json-url@master/dist/browser/json-url.js"></script>
+
+    <!-- Sheperd -->
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/js/shepherd.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/shepherd.js@8.3.1/dist/css/shepherd.css"
+    />
+    <script src="tutorial.js"></script>
+
+    <script src="sparnatural-bindings.js"></script>
+    <script type="text/javascript" src="./sparnatural-history.js"></script>
+    <script type="text/javascript" src="./sparnatural-services.js"></script>
+    <script type="text/javascript" src="./sparnatural-text-query.js"></script>
+
+    <script>
+      $.urlParam = function (name) {
+        var results = new RegExp("[\\?&amp;]" + name + "=([^&amp;#]*)").exec(
+          window.location.href
+        );
+        if (results == null) {
+          return null;
+        }
+        return results[1] || 0;
+      };
+      var lang = $.urlParam("lang") != null ? $.urlParam("lang") : "en";
+
+      // set the locale
+      $.i18n({ locale: lang });
+
+      $.i18n().load({
+        en: {
+          "page.title": "Sparnatural Museums",
+          "menu.home": "Sparnatural",
+          "menu.lang": "Lang.",
+          "menu.github": "Github",
+          "menu.docs": "Docs",
+          "endpoint.querying": "Querying",
+          "actions.toggle": "Toggle SPARQL editor",
+          "actions.share": "Share",
+          "actions.export": "Export query in JSON",
+          "actions.import": "Import query in JSON",
+          intro:
+            "Sparnatural is an intuitive SPARQL query editor that lets you navigate the knowledge graph on which it is configured to query model data by browsing the available classes, properties and field values.",
+          tutorial: "First time here ? watch the tutorial !",
+          "share.modal.title": "Direct query link",
+          "share.modal.close": "Close",
+          "export.modal.title": "Query as JSON",
+          "export.modal.close": "Close",
+          "import.modal.title": "Query as JSON",
+          "import.modal.import": "Import",
+          "example.placeholder": "Load example query...",
+          "example.1.title": "Artworks displayed in Italian museums",
+          "example.2.title": "Museums where Van Goghs artworks are displayed",
+          "example.3.title":
+            "19th Century French women artists, movements, artworks & museums",
+          Results: "Results",
+          send: "Send",
+          Exemple: "Ex: Give me all artworks displayed in France",
+          history: "History",
+          OR: "- OR -",
+          // Documentation translations
+          "doc.title": "What is this Demonstrator?",
+          "doc.intro":
+            "This demonstrator showcases an AI-powered query generation system integrated with the Sparnatural query builder UI. It is designed to interact with the public DBpedia SPARQL endpoint, providing a unique approach to querying structured data.",
+          "doc.features.title": "Key Features",
+          "doc.features.ai.title": "AI-Powered Query Generation:",
+          "doc.features.ai.desc":
+            "Users can input natural language queries, which are then converted into structured queries by an AI agent.",
+          "doc.features.human.title": "Human-in-the-Loop:",
+          "doc.features.human.desc":
+            'The generated queries are visually presented to the user, allowing for manual modifications before execution. This approach can be seen as "RAG with human in the loop" (Retrieval-Augmented Generation with human oversight).',
+          "doc.features.multimodal.title": "Multi-Modal Input:",
+          "doc.features.multimodal.desc":
+            "Users can input queries via text, voice, or by selecting from example queries.",
+          "doc.features.history.title": "Query History and Summarization:",
+          "doc.features.history.desc":
+            "Executed queries are saved in a history panel, where users can generate textual summaries of the queries.",
+          "doc.arch.diagram.title": "Architecture Diagram",
+          "doc.arch.components.title": "Architecture Components",
+          "doc.arch.input.title":
+            "1. Sparnatural Input (Text Box / Speech-to-Text)",
+          "doc.arch.input.natural.title": "Natural Language Input:",
+          "doc.arch.input.natural.desc":
+            "Users can type their queries in natural language.",
+          "doc.arch.input.voice.title": "Voice Input:",
+          "doc.arch.input.voice.desc":
+            "Users can speak their queries, which are converted to text (available on Chrome, Edge, Opera).",
+          "doc.arch.input.examples.title": "Example Queries:",
+          "doc.arch.input.examples.desc":
+            "Users can select from a dropdown list of pre-defined example queries.",
+          "doc.arch.services.title": "2. Sparnatural Services Platform",
+          "doc.arch.services.hosting.title": "Hosting:",
+          "doc.arch.services.hosting.desc":
+            "The platform is hosted on a server at",
+          "doc.arch.services.api.title": "API Routes:",
+          "doc.arch.services.api.desc":
+            "The user's query is sent to the server, which then communicates with the Mistral Agents to generate the structured query or summary. The platform includes several key routes:",
+          "doc.arch.services.api.query2text":
+            "Converts structured JSON queries into human-readable descriptions.",
+          "doc.arch.services.api.text2query":
+            "Converts natural language input into structured JSON queries.",
+          "doc.arch.services.api.urilookup":
+            "Supports URI lookup by processing values requested by the Mistral agent, returning valid URIs as needed for further processing.",
+          "doc.arch.services.api.sparql":
+            "Executes SPARQL queries on an endpoint specified by each interface (e.g., dbpedia-demo uses",
+          "doc.arch.services.response.title": "Response Handling:",
+          "doc.arch.services.response.desc":
+            "The server receives the response from the agents and returns the result to the UI for display and further interaction.",
+          "doc.arch.services.security.title": "Security:",
+          "doc.arch.services.security.desc":
+            "The platform includes middleware for domain checking and API key validation to ensure secure access.",
+          "doc.arch.agents.title": "3. Mistral Agents",
+          "doc.arch.agents.intro":
+            "The platform utilizes two specialized Mistral Agents:",
+          "doc.arch.agents.text2query.title": "Text2Query Agent:",
+          "doc.arch.agents.text2query.config.title": "Configuration:",
+          "doc.arch.agents.text2query.config.desc":
+            "Configured using SHACL and a TypeScript interface that defines the structure of the JSON expected as a result. This configuration includes detailed steps and explanations for the agent to follow.",
+          "doc.arch.agents.text2query.function.title": "Function:",
+          "doc.arch.agents.text2query.function.desc":
+            "Converts natural language input into a custom JSON query format compatible with the Sparnatural UI.",
+          "doc.arch.agents.text2query.workflow.title": "Agent Workflow:",
+          "doc.arch.agents.text2query.workflow.desc":
+            "Uses the SHACL configuration to ensure that the generated queries adhere to the defined constraints and structures.",
+          "doc.arch.agents.query2text.title": "Query2Text Agent:",
+          "doc.arch.agents.query2text.config.title": "Configuration:",
+          "doc.arch.agents.query2text.config.desc":
+            "Also configured with SHACL and a TypeScript interface that defines the structure of the JSON expected as a feature. It includes instructions and steps for generating summaries.",
+          "doc.arch.agents.query2text.function.title": "Function:",
+          "doc.arch.agents.query2text.function.desc":
+            "Converts structured JSON queries back into human-readable descriptions.",
+          "doc.arch.agents.query2text.purpose.title": "Purpose:",
+          "doc.arch.agents.query2text.purpose.desc":
+            "Assists users in understanding and documenting the queries by providing clear and concise summaries.",
+          "doc.arch.ui.title": "4. Sparnatural Query UI",
+          "doc.arch.ui.visual.title": "Visual Query Builder:",
+          "doc.arch.ui.visual.desc":
+            "An interactive interface that allows users to modify or construct queries manually.",
+          "doc.arch.ui.shacl.title": "SHACL Integration:",
+          "doc.arch.ui.shacl.desc":
+            "The same SHACL configuration used by the Mistral Agents is employed to ensure consistency and coherence in the UI.",
+          "doc.arch.ui.execution.title": "Query Execution:",
+          "doc.arch.ui.execution.desc":
+            "Once the query is validated, it is executed against the DBpedia SPARQL endpoint via the Sparnatural Services Platform, and the results are displayed to the user.",
+          "doc.arch.history.title":
+            "5. Sparnatural History and Query Description",
+          "doc.arch.history.queries.title": "Query History:",
+          "doc.arch.history.queries.desc":
+            "Executed queries are stored in a local history panel, allowing users to review and revisit previous queries.",
+          "doc.arch.history.summarization.title": "Query Summarization:",
+          "doc.arch.history.summarization.desc":
+            "Users can generate textual summaries of the executed queries, either manually or via the Query2Text AI agent, to better understand and document the queries.",
+          "doc.limits.title": "Limits and Future Work",
+          "doc.limits.current.title": "Current Limitations",
+          "doc.limits.current.reliability.title":
+            "Reliability in Query Generation:",
+          "doc.limits.current.reliability.desc":
+            "The conversion of natural language to structured queries is not always perfect and may require manual adjustments.",
+          "doc.limits.current.robustness.title": "Robustness of URI Lookup:",
+          "doc.limits.current.robustness.desc":
+            "The URI lookup functionality can struggle with ambiguities and may take additional time, especially when it has to fall back to a second query for more comprehensive results. This can impact performance in some cases.",
+          "doc.limits.future.title": "Future Improvements",
+          "doc.limits.future.enhanced.title": "Enhanced Query Generation:",
+          "doc.limits.future.enhanced.desc":
+            "Improve the accuracy and reliability of the natural language to query conversion.",
+          "doc.limits.future.robust.title": "Robust URI Lookup:",
+          "doc.limits.future.robust.desc":
+            "Optimize the URI lookup process to handle ambiguities better and reduce the time taken, particularly when both queries are executed.",
+          "doc.limits.future.security.title": "Security Verification:",
+          "doc.limits.future.security.desc":
+            "Verify and potentially enhance the current security measures to ensure they are robust and powerful.",
+          "doc.limits.future.collaboration.title": "Collaboration Features:",
+          "doc.limits.future.collaboration.desc":
+            "Enable query sharing and collaborative features for users.",
+        },
+        fr: {
+          "page.title": "Sparnatural : Musées",
+          "menu.home": "Sparnatural",
+          "menu.lang": "Lang.",
+          "menu.github": "Github",
+          "menu.docs": "Docs",
+          "endpoint.querying": "Service SPARQL:",
+          "actions.toggle": "Afficher/Masquer éditeur SPARQL",
+          "actions.share": "Partager",
+          "actions.export": "Exporter la requête en JSON",
+          "actions.import": "Charger une requête en JSON",
+          intro:
+            "Sparnatural est un éditeur de requêtes SPARQL intuitif qui permet de naviguer dans le graphe de connaissances sur lequel il est configuré pour interroger les données du modèle en parcourant les classes, propriétés et valeurs de champs disponibles.",
+          tutorial:
+            "Vous ne savez pas comment commencer ? cliquez ici pour être guidé !",
+          "share.modal.title": "Lien direct vers la requête",
+          "share.modal.close": "Fermer",
+          "export.modal.title": "Requête JSON",
+          "export.modal.close": "Fermer",
+          "import.modal.title": "Charger une requête en JSON",
+          "import.modal.import": "Charger",
+          "example.placeholder": "Charger une requête d'exemple...",
+          "example.1.title": "Les œuvres exposées dans des musées italiens",
+          "example.2.title":
+            "Les musées qui exposent les oeuvres de Vincent Van Gogh",
+          "example.3.title":
+            "Les artistes françaises du XIXe, mouvements, œuvres & lieux d exposition",
+          Results: "Résultats",
+          send: "Envoyer",
+          Exemple: "Ex : Donne-moi toutes les œuvres exposées en France",
+          history: "Historique",
+          OR: "- OU -",
+          // Documentation translations
+          "doc.title": "Qu'est-ce que ce Démonstrateur ?",
+          "doc.intro":
+            "Ce démonstrateur présente un système de génération de requêtes alimenté par l'IA intégré à l'interface utilisateur du constructeur de requêtes Sparnatural. Il est conçu pour interagir avec le point de terminaison SPARQL public de DBpedia, offrant une approche unique pour interroger les données structurées.",
+          "doc.features.title": "Caractéristiques Clés",
+          "doc.features.ai.title":
+            "Génération de Requêtes Alimentée par l'IA :",
+          "doc.features.ai.desc":
+            "Les utilisateurs peuvent saisir des requêtes en langage naturel, qui sont ensuite converties en requêtes structurées par un agent IA.",
+          "doc.features.human.title": "Humain dans la Boucle :",
+          "doc.features.human.desc":
+            "Les requêtes générées sont présentées visuellement à l'utilisateur, permettant des modifications manuelles avant l'exécution. Cette approche peut être vue comme une \"RAG avec humain dans la boucle\" (Retrieval-Augmented Generation avec supervision humaine).",
+          "doc.features.multimodal.title": "Entrée Multi-Modale :",
+          "doc.features.multimodal.desc":
+            "Les utilisateurs peuvent saisir des requêtes via texte, voix, ou en sélectionnant parmi des requêtes d'exemple.",
+          "doc.features.history.title": "Historique et Résumé des Requêtes :",
+          "doc.features.history.desc":
+            "Les requêtes exécutées sont sauvegardées dans un panneau d'historique, où les utilisateurs peuvent générer des résumés textuels des requêtes.",
+          "doc.arch.diagram.title": "Diagramme d'Architecture",
+          "doc.arch.components.title": "Composants de l'Architecture",
+          "doc.arch.input.title":
+            "1. Entrée Sparnatural (Boîte de Texte / Reconnaissance Vocale)",
+          "doc.arch.input.natural.title": "Entrée en Langage Naturel :",
+          "doc.arch.input.natural.desc":
+            "Les utilisateurs peuvent taper leurs requêtes en langage naturel.",
+          "doc.arch.input.voice.title": "Entrée Vocale :",
+          "doc.arch.input.voice.desc":
+            "Les utilisateurs peuvent énoncer leurs requêtes, qui sont converties en texte (disponible sur Chrome, Edge, Opera).",
+          "doc.arch.input.examples.title": "Requêtes d'Exemple :",
+          "doc.arch.input.examples.desc":
+            "Les utilisateurs peuvent sélectionner dans une liste déroulante de requêtes d'exemple prédéfinies.",
+          "doc.arch.services.title": "2. Plateforme de Services Sparnatural",
+          "doc.arch.services.hosting.title": "Hébergement :",
+          "doc.arch.services.hosting.desc":
+            "La plateforme est hébergée sur un serveur à",
+          "doc.arch.services.api.title": "Routes API :",
+          "doc.arch.services.api.desc":
+            "La requête de l'utilisateur est envoyée au serveur, qui communique ensuite avec les Agents Mistral pour générer la requête structurée ou le résumé. La plateforme comprend plusieurs routes clés :",
+          "doc.arch.services.api.query2text":
+            "Convertit les requêtes JSON structurées en descriptions lisibles par l'homme.",
+          "doc.arch.services.api.text2query":
+            "Convertit l'entrée en langage naturel en requêtes JSON structurées.",
+          "doc.arch.services.api.urilookup":
+            "Prend en charge la recherche d'URI en traitant les valeurs demandées par l'agent Mistral, retournant des URI valides si nécessaire pour un traitement ultérieur.",
+          "doc.arch.services.api.sparql":
+            "Exécute les requêtes SPARQL sur un point de terminaison spécifié par chaque interface (par ex., dbpedia-demo utilise",
+          "doc.arch.services.response.title": "Gestion des Réponses :",
+          "doc.arch.services.response.desc":
+            "Le serveur reçoit la réponse des agents et retourne le résultat à l'interface utilisateur pour affichage et interaction supplémentaire.",
+          "doc.arch.services.security.title": "Sécurité :",
+          "doc.arch.services.security.desc":
+            "La plateforme inclut un middleware pour la vérification de domaine et la validation de clé API pour assurer un accès sécurisé.",
+          "doc.arch.agents.title": "3. Agents Mistral",
+          "doc.arch.agents.intro":
+            "La plateforme utilise deux Agents Mistral spécialisés :",
+          "doc.arch.agents.text2query.title": "Agent Text2Query :",
+          "doc.arch.agents.text2query.config.title": "Configuration :",
+          "doc.arch.agents.text2query.config.desc":
+            "Configuré en utilisant SHACL et une interface TypeScript qui définit la structure du JSON attendu comme résultat. Cette configuration inclut des étapes détaillées et des explications pour que l'agent puisse suivre.",
+          "doc.arch.agents.text2query.function.title": "Fonction :",
+          "doc.arch.agents.text2query.function.desc":
+            "Convertit l'entrée en langage naturel en un format de requête JSON personnalisé compatible avec l'interface utilisateur Sparnatural.",
+          "doc.arch.agents.text2query.workflow.title":
+            "Flux de Travail de l'Agent :",
+          "doc.arch.agents.text2query.workflow.desc":
+            "Utilise la configuration SHACL pour s'assurer que les requêtes générées adhèrent aux contraintes et structures définies.",
+          "doc.arch.agents.query2text.title": "Agent Query2Text :",
+          "doc.arch.agents.query2text.config.title": "Configuration :",
+          "doc.arch.agents.query2text.config.desc":
+            "Également configuré avec SHACL et une interface TypeScript qui définit la structure du JSON attendu comme entrée. Il inclut des instructions et des étapes pour générer des résumés.",
+          "doc.arch.agents.query2text.function.title": "Fonction :",
+          "doc.arch.agents.query2text.function.desc":
+            "Convertit les requêtes JSON structurées en descriptions lisibles par l'homme.",
+          "doc.arch.agents.query2text.purpose.title": "Objectif :",
+          "doc.arch.agents.query2text.purpose.desc":
+            "Aide les utilisateurs à comprendre et documenter les requêtes en fournissant des résumés clairs et concis.",
+          "doc.arch.ui.title":
+            "4. Interface Utilisateur de Requête Sparnatural",
+          "doc.arch.ui.visual.title": "Constructeur de Requêtes Visuel :",
+          "doc.arch.ui.visual.desc":
+            "Une interface interactive qui permet aux utilisateurs de modifier ou construire des requêtes manuellement.",
+          "doc.arch.ui.shacl.title": "Intégration SHACL :",
+          "doc.arch.ui.shacl.desc":
+            "La même configuration SHACL utilisée par les Agents Mistral est employée pour assurer la cohérence et la cohérence dans l'interface utilisateur.",
+          "doc.arch.ui.execution.title": "Exécution de Requête :",
+          "doc.arch.ui.execution.desc":
+            "Une fois la requête validée, elle est exécutée contre le point de terminaison SPARQL de DBpedia via la Plateforme de Services Sparnatural, et les résultats sont affichés à l'utilisateur.",
+          "doc.arch.history.title":
+            "5. Historique Sparnatural et Description de Requête",
+          "doc.arch.history.queries.title": "Historique des Requêtes :",
+          "doc.arch.history.queries.desc":
+            "Les requêtes exécutées sont stockées dans un panneau d'historique local, permettant aux utilisateurs de réviser et revisiter les requêtes précédentes.",
+          "doc.arch.history.summarization.title": "Résumé de Requête :",
+          "doc.arch.history.summarization.desc":
+            "Les utilisateurs peuvent générer des résumés textuels des requêtes exécutées, soit manuellement soit via l'agent IA Query2Text, pour mieux comprendre et documenter les requêtes.",
+          "doc.limits.title": "Limites et Travail Futur",
+          "doc.limits.current.title": "Limitations Actuelles",
+          "doc.limits.current.reliability.title":
+            "Fiabilité dans la Génération de Requêtes :",
+          "doc.limits.current.reliability.desc":
+            "La conversion du langage naturel en requêtes structurées n'est pas toujours parfaite et peut nécessiter des ajustements manuels.",
+          "doc.limits.current.robustness.title":
+            "Robustesse de la Recherche d'URI :",
+          "doc.limits.current.robustness.desc":
+            "La fonctionnalité de recherche d'URI peut avoir des difficultés avec les ambiguïtés et peut prendre du temps supplémentaire, surtout quand elle doit se rabattre sur une seconde requête pour des résultats plus complets. Cela peut impacter les performances dans certains cas.",
+          "doc.limits.future.title": "Améliorations Futures",
+          "doc.limits.future.enhanced.title":
+            "Génération de Requêtes Améliorée :",
+          "doc.limits.future.enhanced.desc":
+            "Améliorer la précision et la fiabilité de la conversion du langage naturel en requête.",
+          "doc.limits.future.robust.title": "Recherche d'URI Robuste :",
+          "doc.limits.future.robust.desc":
+            "Optimiser le processus de recherche d'URI pour mieux gérer les ambiguïtés et réduire le temps nécessaire, particulièrement quand les deux requêtes sont exécutées.",
+          "doc.limits.future.security.title": "Vérification de Sécurité :",
+          "doc.limits.future.security.desc":
+            "Vérifier et potentiellement améliorer les mesures de sécurité actuelles pour s'assurer qu'elles sont robustes et puissantes.",
+          "doc.limits.future.collaboration.title":
+            "Fonctionnalités de Collaboration :",
+          "doc.limits.future.collaboration.desc":
+            "Permettre le partage de requêtes et les fonctionnalités collaboratives pour les utilisateurs.",
+        },
+      });
+      $("body").i18n();
+    </script>
+  </body>
+</html>
