@@ -80,6 +80,37 @@
         padding: 0px;
         padding-top: 20px;
       }
+
+      .sticky-query-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #f8f9fa;
+        border-top: 1px solid #ddd;
+        padding: 10px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sticky-query-bar sparnatural-text-query {
+        flex: 1;
+      }
+
+      .scroll-to-sparnatural {
+        background: #007bff;
+        border: none;
+        color: white;
+        padding: 5px 8px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .scroll-to-sparnatural:hover {
+        background: #0056b3;
+      }
     </style>
 
     <!-- /Sparnatural-specific -->
@@ -144,11 +175,16 @@
       <section id="sparnatural-section">
         <div class="container">
           <div class="row">
-            <sparnatural-text-query lang="en">
-              <sparnatural-services
-                href="https://services.sparnatural.eu/api/v1/dbpedia-en/"
-              ></sparnatural-services>
-            </sparnatural-text-query>
+            <div class="sticky-query-bar">
+              <button class="scroll-to-sparnatural" title="Go to Sparnatural">
+                <i class="bi bi-chevron-up"></i>
+              </button>
+              <sparnatural-text-query lang="en">
+                <sparnatural-services
+                  href="https://services.sparnatural.eu/api/v1/dbpedia-en/"
+                ></sparnatural-services>
+              </sparnatural-text-query>
+            </div>
           </div>
 
           <!-- separateur entre les deux soluti on avec text OR ou OU en fr-->
@@ -797,6 +833,13 @@
         console.log("Decompressed JSON to be loaded text to query: ", query);
         sparnatural.loadQuery(query);
       });
+      document
+        .querySelector(".scroll-to-sparnatural")
+        .addEventListener("click", () => {
+          document
+            .querySelector("#sparnatural-section")
+            .scrollIntoView({ behavior: "smooth" });
+        });
     </script>
   </body>
 </html>
