@@ -645,6 +645,7 @@
         var compressedJson = urlParams.get("query");
         var compressCodec = JsonUrl("lzma");
         compressCodec.decompress(compressedJson).then((json) => {
+          console.log("Decompressed JSON to be loaded: ", json);
           sparnatural.loadQuery(JSON.parse(json));
         });
       }
@@ -811,6 +812,7 @@
       });
       sparnaturalTextQuery.addEventListener("loadQuery", (event) => {
         const query = event.detail.query;
+        console.log("Decompressed JSON to be loaded text to query: ", query);
         sparnatural.loadQuery(query);
       });
     </script>
