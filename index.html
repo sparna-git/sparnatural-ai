@@ -143,7 +143,6 @@
       <!-- ======= Sparnatural Section ======= -->
       <section id="sparnatural-section">
         <div class="container">
-
           <div class="row">
             <sparnatural-text-query lang="en">
               <sparnatural-services
@@ -779,11 +778,6 @@
         if (sampleQueries.hasOwnProperty(key)) {
           sparnatural.loadQuery(sampleQueries[key]);
         }
-      };
-
-      document.getElementById("tutorial").onclick = function () {
-        sparnatural.clear();
-        initTour();
       };
 
       sparnatural.addEventListener("submit", (event) => {
