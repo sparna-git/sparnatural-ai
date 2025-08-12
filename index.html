@@ -815,15 +815,16 @@
         const query = event.detail.query;
         sparnatural.loadQuery(query);
       });
+
       sparnaturalTextQuery.addEventListener("loadQuery", (event) => {
         const query = event.detail.query;
         console.log("Decompressed JSON to be loaded text to query: ", query);
         sparnatural.loadQuery(query);
 
-        // Exécuter automatiquement la requête une fois chargée
+        // Attendre un peu que l'UI finisse de se mettre à jour
         setTimeout(() => {
-          sparnatural.submit();
-        }, 300); // petit délai pour que l'UI ait fini de se mettre à jour
+          sparnatural.dispatchEvent(new Event("submit"));
+        }, 300);
       });
 
       document
