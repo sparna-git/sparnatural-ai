@@ -819,7 +819,13 @@
         const query = event.detail.query;
         console.log("Decompressed JSON to be loaded text to query: ", query);
         sparnatural.loadQuery(query);
+
+        // Exécuter automatiquement la requête une fois chargée
+        setTimeout(() => {
+          sparnatural.submit();
+        }, 300); // petit délai pour que l'UI ait fini de se mettre à jour
       });
+
       document
         .querySelector(".scroll-to-sparnatural")
         .addEventListener("click", () => {
