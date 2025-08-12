@@ -353,7 +353,7 @@
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
-                data-i18n="share.modal.close"
+                aria-label="Close"
               ></button>
             </div>
           </div>
@@ -397,7 +397,7 @@
                 type="button"
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
-                data-i18n="export.modal.close"
+                aria-label="Close"
               ></button>
             </div>
           </div>
@@ -722,8 +722,55 @@
         .getElementById("myCustomButton")
         .addEventListener("click", () => {
           historyComponent.openHistoryModal();
+
+          // Cacher la barre sticky quand le modal d'historique s'ouvre
+          const stickyBar = document.querySelector(".sticky-query-bar");
+          if (stickyBar) {
+            stickyBar.style.display = "none";
+          }
+
+          // Observer les changements sur le modal d'historique
+          const historyModal =
+            document.querySelector("sparnatural-history").shadowRoot ||
+            document.querySelector(".modal") ||
+            document.querySelector('[class*="modal"]');
+
+          if (historyModal) {
+            const observer = new MutationObserver((mutations) => {
+              mutations.forEach((mutation) => {
+                // Vérifier si le modal n'est plus visible
+                const modalElements = document.querySelectorAll(
+                  '.modal.show, .modal[style*="display: block"]'
+                );
+                if (modalElements.length === 0) {
+                  // Aucun modal visible, remettre la barre sticky
+                  const stickyBar = document.querySelector(".sticky-query-bar");
+                  if (stickyBar) {
+                    stickyBar.style.display = "flex";
+                  }
+                  observer.disconnect(); // Arrêter l'observation
+                }
+              });
+            });
+
+            // Observer les changements dans le DOM
+            observer.observe(document.body, {
+              childList: true,
+              subtree: true,
+              attributes: true,
+              attributeFilter: ["class", "style"],
+            });
+          }
         });
 
+      // Supprimer les autres gestionnaires d'événements redondants
+      // Garder seulement celui-ci comme backup
+      $(document).on("hidden.bs.modal", ".modal", function () {
+        const stickyBar = document.querySelector(".sticky-query-bar");
+        if (stickyBar) {
+          stickyBar.style.display = "flex";
+        }
+      });
       sparnatural.addEventListener("queryUpdated", (event) => {
         // get the SPARQL query string, and pass it to yasQE
         queryString = sparnatural.expandSparql(event.detail.queryString);
