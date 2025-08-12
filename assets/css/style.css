@@ -21,7 +21,9 @@ a {
   transition: 0.5s;
 }
 
-a:hover, a:active, a:focus {
+a:hover,
+a:active,
+a:focus {
   color: #1dc9ce;
   outline: none;
   text-decoration: none;
@@ -32,7 +34,12 @@ p {
   margin: 0 0 30px 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
@@ -75,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 .back-to-top.active {
   visibility: visible;
   opacity: 1;
+  z-index: 1000;
 }
 
 /*--------------------------------------------------------------
@@ -108,7 +116,8 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
 }
 
-#header #logo h1 a, #header #logo h1 a:hover {
+#header #logo h1 a,
+#header #logo h1 a:hover {
   color: #fff;
 }
 
@@ -181,12 +190,16 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease-in-out 0s;
 }
 
-.navbar a:hover:before, .navbar li:hover > a:before, .navbar .active:before {
+.navbar a:hover:before,
+.navbar li:hover > a:before,
+.navbar .active:before {
   visibility: visible;
   transform: scaleX(1);
 }
 
-.navbar a:hover, .navbar .active, .navbar li:hover > a {
+.navbar a:hover,
+.navbar .active,
+.navbar li:hover > a {
   color: #fff;
 }
 
@@ -220,7 +233,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover > a {
   color: #1dc8cd;
 }
 
@@ -308,7 +323,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
 }
 
-.navbar-mobile a:hover:before, .navbar-mobile li:hover > a:before, .navbar-mobile .active:before {
+.navbar-mobile a:hover:before,
+.navbar-mobile li:hover > a:before,
+.navbar-mobile .active:before {
   visibility: hidden;
 }
 
@@ -318,7 +335,9 @@ h1, h2, h3, h4, h5, h6 {
   color: #333333;
 }
 
-.navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover > a {
   color: #1dc8cd;
 }
 
@@ -350,7 +369,9 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
 }
 
-.navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
+.navbar-mobile .dropdown ul a:hover,
+.navbar-mobile .dropdown ul .active:hover,
+.navbar-mobile .dropdown ul li:hover > a {
   color: #1dc8cd;
 }
 
@@ -364,7 +385,12 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, rgba(29, 224, 153, 0.8), rgba(29, 200, 205, 0.8)), url("../img/hero-bg.png") center top no-repeat;
+  background: linear-gradient(
+      45deg,
+      rgba(29, 224, 153, 0.8),
+      rgba(29, 200, 205, 0.8)
+    ),
+    url("../img/hero-bg.png") center top no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -488,7 +514,8 @@ h1, h2, h3, h4, h5, h6 {
     position: static;
     padding-top: 30px;
   }
-  #hero .product-screens .product-screen-2, #hero .product-screens .product-screen-3 {
+  #hero .product-screens .product-screen-2,
+  #hero .product-screens .product-screen-3 {
     display: none;
   }
 }
@@ -782,13 +809,15 @@ section {
 }
 
 @media (max-width: 768px) {
-  #advanced-features .advanced-feature-img-right, #advanced-features .advanced-feature-img-left {
+  #advanced-features .advanced-feature-img-right,
+  #advanced-features .advanced-feature-img-left {
     max-width: 50%;
   }
 }
 
 @media (max-width: 767px) {
-  #advanced-features .advanced-feature-img-right, #advanced-features .advanced-feature-img-left {
+  #advanced-features .advanced-feature-img-right,
+  #advanced-features .advanced-feature-img-left {
     max-width: 100%;
     float: none;
     padding: 0 0 30px 0;
@@ -799,7 +828,8 @@ section {
 --------------------------------*/
 #call-to-action {
   overflow: hidden;
-  background: linear-gradient(rgba(29, 200, 205, 0.65), rgba(29, 205, 89, 0.2)), url(../img/call-to-action-bg.jpg) fixed center center;
+  background: linear-gradient(rgba(29, 200, 205, 0.65), rgba(29, 205, 89, 0.2)),
+    url(../img/call-to-action-bg.jpg) fixed center center;
   background-size: cover;
   padding: 80px 0;
 }
@@ -903,7 +933,8 @@ section {
     text-align: center;
     padding-bottom: 15px;
   }
-  #more-features h4, #more-features p {
+  #more-features h4,
+  #more-features p {
     margin-left: 0;
     text-align: center;
   }
@@ -1276,13 +1307,15 @@ section {
   animation: animate-loading 1s linear infinite;
 }
 
-#contact .php-email-form input, #contact .php-email-form textarea {
+#contact .php-email-form input,
+#contact .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
 }
 
-#contact .php-email-form input::focus, #contact .php-email-form textarea::focus {
+#contact .php-email-form input::focus,
+#contact .php-email-form textarea::focus {
   background-color: #1dc8cd;
 }
 
