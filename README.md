@@ -36,6 +36,8 @@ Query summarization, being a simple workflow, served as the first step in our jo
 
 The data flow is the following:
 
+[![](https://github.com/sparna-git/sparnatural-dbpedia-en/raw/main/docs/architecture-query2text.png)](https://github.com/sparna-git/sparnatural-dbpedia-en/raw/main/docs/architecture-query2text.png)
+
 
 1. **SHACL specifications**
 
@@ -100,6 +102,11 @@ This process is separated in 2 steps:
   2. A post-processing is applied on the JSON structure to reconcile the text values identified by the AI Agent against the URI identifiers in the knowledge base
 
 The data flow is the following:
+
+
+[![](https://github.com/sparna-git/sparnatural-dbpedia-en/raw/main/docs/architecture-text2query.png)](https://github.com/sparna-git/sparnatural-dbpedia-en/raw/main/docs/architecture-text2query.png)
+
+
 
 1. **SHACL specifications**
 
