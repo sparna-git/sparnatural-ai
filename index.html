@@ -803,8 +803,9 @@
       sparnaturalTextQuery.addEventListener("loadQuery", (event) => {
         const query = event.detail.query;
         console.log("Decompressed JSON to be loaded text to query: ", query);
+        sparnatural.loadQuery(query);
 
-        // Vérifier si une des values a rdfTerm.value = URI_NOT_FOUND
+        // Vérification : ne submit que si aucune value n'a URI_NOT_FOUND
         let hasNotFound = false;
         if (query.branches && Array.isArray(query.branches)) {
           for (const branch of query.branches) {
@@ -824,10 +825,6 @@
           }
         }
 
-        // Charger la query dans tous les cas
-        sparnatural.loadQuery(query);
-
-        // Si aucune value n'a URI_NOT_FOUND, on fait le submit
         if (!hasNotFound) {
           setTimeout(() => {
             sparnatural.dispatchEvent(new Event("submit"));
