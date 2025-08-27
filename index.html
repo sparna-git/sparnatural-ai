@@ -824,15 +824,17 @@
           }
         }
 
-        // Si aucune value n'a URI_NOT_FOUND, on met à jour
+        // Charger la query dans tous les cas
+        sparnatural.loadQuery(query);
+
+        // Si aucune value n'a URI_NOT_FOUND, on fait le submit
         if (!hasNotFound) {
-          sparnatural.loadQuery(query);
           setTimeout(() => {
             sparnatural.dispatchEvent(new Event("submit"));
           }, 300);
         } else {
           console.log(
-            "Query contains URI_NOT_FOUND, not updating Sparnatural."
+            "Query contains URI_NOT_FOUND, loaded but not submitted."
           );
         }
       });
