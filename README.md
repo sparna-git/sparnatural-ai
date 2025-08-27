@@ -19,9 +19,9 @@ Sparnatural is a client-side UI component that [can be inserted into any webpage
 
 However the integration of AI Agents poses different challenges, and _cannot be properly achieved with only a client-side component_ talking directly with an AI Agent. In particular because this requires authentication tokens that cannot be inserted as plain text into HTML code.
 
-This is why all the integration is done trough a server-side component called [**"Sparnatural platform"**](https://github.com/sparna-git/sparnatural-platform). The platform is a central server exposing the API needed for Sparnatural components (Sparnatural itself but also [Sparnatural history](https://github.com/sparna-git/Sparnatural-history)), especially the query-2-text and text-2-query services described below.
+This is why all the integration is done trough a server-side component called [**"Sparnatural platform"**](https://github.com/sparna-git/sparnatural-platform). The platform is a central server exposing the API needed for Sparnatural components (Sparnatural itself but also [Sparnatural history](https://github.com/sparna-git/Sparnatural-history)), especially the `query2text` and `text2query` services described below.
 
-In addition to **AI integration**, this platform will bring additionnal added-value services, such as **query logging**, **usage statistics**, or **entity reconciliation** (for [OpenRefine reconciliation](https://openrefine.org/docs/manual/reconciling)). Other services can be progressively added in the future.
+In addition to **AI integration**, this platform will bring additionnal added-value services, such as **sparql proxying**, **query logging**, **usage statistics**, or **entity reconciliation** (for [OpenRefine reconciliation](https://openrefine.org/docs/manual/reconciling)). Other services can be progressively added in the future.
 
 The Sparnatural platform is open-source but is not meant to be deployed on-premises by each user : it can remain hosted by Sparna. It will be configured for each new deployment of Sparnatural wishing to use AI integration or the added value features mentioned above.
 
