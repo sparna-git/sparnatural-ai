@@ -802,36 +802,37 @@
 
       sparnaturalTextQuery.addEventListener("loadQuery", (event) => {
         const query = event.detail.query;
-        console.log("Decompressed JSON to be loaded text to query: ", query);
+        console.log("Query to load:", query);
         sparnatural.loadQuery(query);
 
-        // Vérification : ne submit que si aucune value n'a URI_NOT_FOUND
-        let hasNotFound = false;
-        if (query.branches && Array.isArray(query.branches)) {
-          for (const branch of query.branches) {
-            if (branch.line && Array.isArray(branch.line.values)) {
-              for (const value of branch.line.values) {
-                if (
-                  value.rdfTerm &&
-                  value.rdfTerm.value ===
-                    "https://services.sparnatural.eu/api/v1/URI_NOT_FOUND"
-                ) {
-                  hasNotFound = true;
-                  break;
-                }
-              }
-            }
-            if (hasNotFound) break;
+        function hasNotFound(node) {
+          if (!node) return false;
+
+          // check line values
+          if (
+            node.line?.values?.some(
+              (v) =>
+                v.rdfTerm?.value ===
+                "https://services.sparnatural.eu/api/v1/URI_NOT_FOUND"
+            )
+          ) {
+            return true;
           }
+
+          // recurse on branches
+          if (node.branches?.some(hasNotFound)) return true;
+
+          // recurse on children
+          if (node.children?.some(hasNotFound)) return true;
+
+          return false;
         }
 
-        if (!hasNotFound) {
-          setTimeout(() => {
-            sparnatural.dispatchEvent(new Event("submit"));
-          }, 300);
+        if (!hasNotFound(query)) {
+          setTimeout(() => sparnatural.dispatchEvent(new Event("submit")), 300);
         } else {
           console.log(
-            "Query contains URI_NOT_FOUND, loaded but not submitted."
+            "Query contains URI_NOT_FOUND — loaded but not submitted."
           );
         }
       });
