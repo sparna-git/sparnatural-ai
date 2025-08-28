@@ -805,52 +805,34 @@
         console.log("Decompressed JSON to be loaded text to query: ", query);
         sparnatural.loadQuery(query);
 
-        // Fonction récursive pour trouver toutes les occurrences de URI_NOT_FOUND
-        function findNotFoundNodes(node, results = []) {
-          if (!node) return results;
-
-          // Vérifie les valeurs de la ligne
-          if (node.line && Array.isArray(node.line.values)) {
-            for (const value of node.line.values) {
-              if (
-                value.rdfTerm &&
-                value.rdfTerm.value ===
-                  "https://services.sparnatural.eu/api/v1/URI_NOT_FOUND"
-              ) {
-                results.push({
-                  branch: node,
-                  value: value,
-                });
+        // Vérification : ne submit que si aucune value n'a URI_NOT_FOUND
+        let hasNotFound = false;
+        if (query.branches && Array.isArray(query.branches)) {
+          for (const branch of query.branches) {
+            if (branch.line && Array.isArray(branch.line.values)) {
+              for (const value of branch.line.values) {
+                if (
+                  value.rdfTerm &&
+                  value.rdfTerm.value ===
+                    "https://services.sparnatural.eu/api/v1/URI_NOT_FOUND"
+                ) {
+                  hasNotFound = true;
+                  break;
+                }
               }
             }
+            if (hasNotFound) break;
           }
-
-          // Descend récursivement dans branches
-          if (node.branches && Array.isArray(node.branches)) {
-            for (const branch of node.branches) {
-              findNotFoundNodes(branch, results);
-            }
-          }
-
-          // Descend récursivement dans children
-          if (node.children && Array.isArray(node.children)) {
-            for (const child of node.children) {
-              findNotFoundNodes(child, results);
-            }
-          }
-
-          return results;
         }
 
-        const notFoundNodes = findNotFoundNodes(query);
-
-        if (notFoundNodes.length === 0) {
+        if (!hasNotFound) {
           setTimeout(() => {
             sparnatural.dispatchEvent(new Event("submit"));
           }, 300);
         } else {
-          console.log("Query contains URI_NOT_FOUND:");
-          console.log(notFoundNodes);
+          console.log(
+            "Query contains URI_NOT_FOUND, loaded but not submitted."
+          );
         }
       });
     </script>
