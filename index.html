@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>Sparnatural Museums & Painters</title>
+    <title>Sparnatural + AI</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
 
@@ -91,6 +91,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.1);
       }
 
       .sticky-query-bar sparnatural-text-query {
@@ -114,10 +115,11 @@
 
           <nav id="navbar" class="navbar">
             <ul>
+              <!--for doc page readme file -->
               <li>
-                <a class="nav-link" href="http://sparnatural.eu"
-                  ><i style="font-size: 25px" class="fa-thin fa-house"></i
-                  >&nbsp;Home</a
+                <a class="nav-link" href="./doc-page.html"
+                  ><i style="font-size: 25px" class="fa-thin fa-book"></i
+                  >&nbsp;<span data-i18n="menu.docs">Documentation</span></a
                 >
               </li>
               <li class="dropdown">
@@ -132,22 +134,7 @@
                   <li><a href="?lang=fr">fr</a></li>
                   <li><a href="?lang=en">en</a></li>
                 </ul>
-              </li>
-              <li>
-                <a
-                  class="nav-link"
-                  href="https://github.com/sparna-git/Sparnatural"
-                  ><i style="font-size: 25px" class="fab fa-github"></i>&nbsp;
-                  Github</a
-                >
-              </li>
-              <!--for doc page readme file -->
-              <li>
-                <a class="nav-link" href="./doc-page.html"
-                  ><i style="font-size: 25px" class="fa-thin fa-book"></i
-                  >&nbsp;<span data-i18n="menu.docs">Docs</span></a
-                >
-              </li>
+              </li>              
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav>
@@ -161,6 +148,11 @@
         <div class="container">
           <div class="row">
             <div class="sticky-query-bar">
+              <div class="contact-about">
+                <a href="http://sparna.fr"
+                  ><img src="assets/img/sparna.png" width="70%"
+                /></a>
+              </div>
               <sparnatural-text-query lang="en">
                 <sparnatural-services
                   href="https://services.sparnatural.eu/api/v1/dbpedia-en/"
@@ -273,37 +265,6 @@
         </div>
       </section>
       <!-- End YASR Section -->
-
-      <!-- ======= Contact Section ======= -->
-      <section id="contact">
-        <div class="container" data-aos="fade-up">
-          <div class="row">
-            <div class="col-lg-2 col-md-2">
-              <div class="contact-about">
-                <a href="http://sparna.fr"
-                  ><img src="assets/img/sparna.png" style="width: 100%"
-                /></a>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4">
-              <div class="social-links">
-                <a href="mailto:thomas.francart@sparna.fr"
-                  ><i class="bi bi-envelope-fill"></i
-                ></a>
-                <a href="http://sparna.fr"><i class="bi bi-building"></i></a>
-                <a href="http://blog.sparna.fr"
-                  ><i class="bi bi-journal-text"></i
-                ></a>
-                <a href="https://github.com/sparna-git/Sparnatural"
-                  ><i class="bi bi-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- End Contact Section -->
 
       <!-- Modal -->
       <div
@@ -525,11 +486,11 @@
 
       $.i18n().load({
         en: {
-          "page.title": "Sparnatural Museums",
+          "page.title": "Sparnatural + AI",
           "menu.home": "Sparnatural",
           "menu.lang": "Lang.",
           "menu.github": "Github",
-          "menu.docs": "Docs",
+          "menu.docs": "Documentation",
           "endpoint.querying": "Querying",
           "actions.toggle": "Toggle SPARQL editor",
           "actions.share": "Share",
@@ -537,7 +498,6 @@
           "actions.import": "Import query in JSON",
           intro:
             "Sparnatural is an intuitive SPARQL query editor that lets you navigate the knowledge graph on which it is configured to query model data by browsing the available classes, properties and field values.",
-          tutorial: "First time here ? watch the tutorial !",
           "share.modal.title": "Direct query link",
           "share.modal.close": "Close",
           "export.modal.title": "Query as JSON",
@@ -556,20 +516,18 @@
           OR: "- OR -",
         },
         fr: {
-          "page.title": "Sparnatural : Musées",
+          "page.title": "Sparnatural + IA",
           "menu.home": "Sparnatural",
           "menu.lang": "Lang.",
           "menu.github": "Github",
-          "menu.docs": "Docs",
+          "menu.docs": "Documentation",
           "endpoint.querying": "Service SPARQL:",
           "actions.toggle": "Afficher/Masquer éditeur SPARQL",
           "actions.share": "Partager",
           "actions.export": "Exporter la requête en JSON",
           "actions.import": "Charger une requête en JSON",
           intro:
-            "Sparnatural est un éditeur de requêtes SPARQL intuitif qui permet de naviguer dans le graphe de connaissances sur lequel il est configuré pour interroger les données du modèle en parcourant les classes, propriétés et valeurs de champs disponibles.",
-          tutorial:
-            "Vous ne savez pas comment commencer ? cliquez ici pour être guidé !",
+            "Sparnatural is an intuitive SPARQL query editor that lets you navigate the knowledge graph on which it is configured to query model data by browsing the available classes, properties and field values.",
           "share.modal.title": "Lien direct vers la requête",
           "share.modal.close": "Fermer",
           "export.modal.title": "Requête JSON",
