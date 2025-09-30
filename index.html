@@ -61,6 +61,10 @@
     <link href="sparnatural-text-query.css" rel="stylesheet" />
 
     <style>
+      /* Making the container modal flexible with the height of .sticky-query-bar */
+      .yasr {
+        padding-bottom: calc(var(--sticky-bar-height, 100px) + 20px);
+      }
       .modal {
         z-index: 1050 !important; /* valeur doit etre supérieure à celle de l'overlay */
       }
@@ -818,6 +822,32 @@
           );
         }
       });
+
+      function updateContainerPadding() {
+        const stickyBar = document.querySelector(".sticky-query-bar");
+        if (stickyBar) {
+          const height = stickyBar.offsetHeight;
+          document.documentElement.style.setProperty(
+            "--sticky-bar-height",
+            height + "px"
+          );
+        }
+      }
+
+      // Update padding when page loads and when window resizes
+      document.addEventListener("DOMContentLoaded", updateContainerPadding);
+      window.addEventListener("resize", updateContainerPadding);
+
+      // Also update when sticky bar content changes (e.g., when text query expands)
+      const observer = new MutationObserver(updateContainerPadding);
+      const stickyBar = document.querySelector(".sticky-query-bar");
+      if (stickyBar) {
+        observer.observe(stickyBar, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+        });
+      }
     </script>
   </body>
 </html>
