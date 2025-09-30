@@ -61,6 +61,13 @@
     <link href="sparnatural-text-query.css" rel="stylesheet" />
 
     <style>
+      .modal {
+        z-index: 1050 !important; /* valeur doit etre supérieure à celle de l'overlay */
+      }
+      .modal-backdrop {
+        z-index: 1040 !important; /* L'overlay doit avoir un z-index inferieur*/
+      }
+
       .yasqe .CodeMirror {
         font-size: 0.8em;
       }
@@ -90,7 +97,7 @@
         left: 0;
         width: 100%;
         height: auto;
-        max-height: 150px;
+        max-height: 250px;
         background: #fff;
         z-index: 999;
         box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
