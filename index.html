@@ -124,7 +124,6 @@
         max-width: calc(100% - 450px);
       }
       /* Style pour afficher l'icône au lieu du texte - Version compacte */
-      /* Style pour afficher l'icône au lieu du texte - Version compacte */
       #query-select {
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23495057" d="M40 48C26.7 48 16 58.7 16 72v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>') !important;
         background-repeat: no-repeat !important;
@@ -246,23 +245,26 @@
                 <textarea
                   slot="input"
                   id="input-slot"
-                  placeholder="Ex : Donne-moi toutes les œuvres exposées en France"
+                  data-i18n-placeholder="textarea.placeholder"
                 ></textarea>
                 <select slot="dropdown" id="query-select">
                   <option value=""></option>
-                  <option value="Find all museums in France">
-                    Find all museums in France
-                  </option>
-                  <option value="What artists were born in Algeria?">
-                    What artists were born in Algeria?
-                  </option>
+                  <option
+                    value="Find all museums in France"
+                    data-i18n="option.museums.france"
+                  ></option>
+                  <option
+                    value="What artists were born in Algeria?"
+                    data-i18n="option.artists.algeria"
+                  ></option>
                   <option
                     value="List all movements where the participating artists are from Italy"
-                  >
-                    List all movements where the participating artists are from
-                    Italy
-                  </option>
-                  <option value="Baroque artworks">Baroque artworks</option>
+                    data-i18n="option.movements.italy"
+                  ></option>
+                  <option
+                    value="Baroque artworks"
+                    data-i18n="option.baroque.artworks"
+                  ></option>
                 </select>
               </sparnatural-text-query>
               <!-- Museum in France displaying impressionist paintings -->
@@ -622,6 +624,13 @@
           Exemple: "Ex: Give me all artworks displayed in France",
           history: "History",
           OR: "- OR -",
+          "textarea.placeholder":
+            "Ex: Give me all artworks displayed in France",
+          "option.museums.france": "Find all museums in France",
+          "option.artists.algeria": "What artists were born in Algeria?",
+          "option.movements.italy":
+            "List all movements where the participating artists are from Italy",
+          "option.baroque.artworks": "Baroque artworks",
         },
         fr: {
           "page.title": "Sparnatural + IA",
@@ -653,6 +662,13 @@
           Exemple: "Ex : Donne-moi toutes les œuvres exposées en France",
           history: "Historique",
           OR: "- OU -",
+          "textarea.placeholder":
+            "Ex : Donne-moi toutes les œuvres exposées en France",
+          "option.museums.france": "Trouver tous les musées en France",
+          "option.artists.algeria": "Quels artistes sont nés en Algérie ?",
+          "option.movements.italy":
+            "Lister tous les mouvements où les artistes participants viennent d'Italie",
+          "option.baroque.artworks": "Œuvres baroques",
         },
       });
       $("body").i18n();
@@ -677,6 +693,14 @@
         const key = $(this).data("i18n-placeholder");
         const translated = $.i18n(key);
         $(this).attr("placeholder", translated);
+      });
+
+      // Appliquer les traductions aux options du select (texte ET valeur)
+      $("#query-select option[data-i18n]").each(function () {
+        const key = $(this).data("i18n");
+        const translated = $.i18n(key);
+        $(this).text(translated);
+        $(this).val(translated);
       });
 
       const sparnatural = document.querySelector("spar-natural");
