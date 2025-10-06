@@ -51,6 +51,11 @@
       href="https://cdn.jsdelivr.net/npm/@chenfengyuan/datepicker@1.0.9/dist/datepicker.min.css"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <!-- Sparnatural CSS -->
     <link href="./sparnatural.css" rel="stylesheet" />
     <!-- Timeline CSS -->
@@ -113,6 +118,57 @@
         margin: 0 20px 0 0;
         min-width: 150px;
         max-width: calc(100% - 450px);
+      }
+
+      /* Style pour afficher l'icône au lieu du texte - Version compacte */
+      #query-select {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23495057" d="M40 48C26.7 48 16 58.7 16 72v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V72c0-13.3-10.7-24-24-24H40zM192 64c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zm0 160c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H192zM16 232v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V232c0-13.3-10.7-24-24-24H40c-13.3 0-24 10.7-24 24zM40 368c-13.3 0-24 10.7-24 24v24c0 13.3 10.7 24 24 24H88c13.3 0 24-10.7 24-24V392c0-13.3-10.7-24-24-24H40z"/></svg>') !important;
+        background-repeat: no-repeat !important;
+        background-position: center center !important;
+        background-size: 14px 14px !important;
+        text-indent: -9999px !important;
+        color: transparent !important;
+        width: 36px !important;
+        height: 36px !important;
+        padding: 0 !important;
+        font-size: 12px !important;
+        border: none !important;
+        border-radius: 6px !important;
+        cursor: pointer !important;
+        appearance: none !important; /* Supprimer la flèche native du select */
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+      }
+
+      /* Supprimer la flèche native sur Firefox */
+      #query-select::-moz-focus-inner {
+        border: 0;
+      }
+
+      /* Supprimer la flèche native sur IE/Edge */
+      #query-select::-ms-expand {
+        display: none;
+      }
+
+      #query-select option {
+        text-indent: 0 !important;
+        color: #495057 !important;
+        padding: 8px !important;
+        font-size: 14px !important;
+      }
+
+      #query-select option:first-child {
+        display: none;
+      }
+
+      /* Quand une option est sélectionnée, garder la taille compacte */
+      #query-select:not([value=""]) {
+        text-indent: -9999px !important;
+        color: transparent !important;
+        width: 36px !important;
+      }
+      #input-slot {
+        max-height: 50px;
       }
     </style>
 
@@ -178,8 +234,22 @@
               </div>
               <sparnatural-text-query lang="en">
                 <sparnatural-services
+                  slot="services"
                   href="https://services.sparnatural.eu/api/v1/demo-ep/"
                 ></sparnatural-services>
+
+                <!-- textarea -->
+                <textarea
+                  slot="input"
+                  id="input-slot"
+                  placeholder="Ex: give me all organisations in France"
+                ></textarea>
+                <select slot="dropdown" id="query-select">
+                  <option value=""></option>
+                  <option value="Give me all members of 'Renew Europe Group'">
+                    Give me all members of 'Renew Europe Group'
+                  </option>
+                </select>
               </sparnatural-text-query>
               <!-- Museum in France displaying impressionist paintings -->
             </div>
@@ -819,5 +889,6 @@
         }
       });
     </script>
+    <script src="sparnatural-text-query.js"></script>
   </body>
 </html>
